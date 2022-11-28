@@ -19,7 +19,7 @@ class HomeController extends AbstractController
         protected UserPasswordHasherInterface $encoder) 
     {
     }
-    
+
     #[Route('', name: 'app_home')]
     public function index(): Response
     {
