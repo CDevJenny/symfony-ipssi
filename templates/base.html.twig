@@ -17,6 +17,11 @@
         <header>
             <a href="{{ path('app_home') }}">Home</a>
             <a href="{{ path('app_article_index') }}">Articles</a>
+            {% if app.user %}
+                <a href="{{ path('app_logout') }}">Déconnexion</a>
+            {% else %}
+                <a href="{{ path('app_login') }}">Se Connecter</a>
+            {% endif %}
         </header>
         {% block body %}{% endblock %}
     </body>
