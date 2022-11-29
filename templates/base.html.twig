@@ -18,6 +18,8 @@
         <nav>
             <a href="{{ path('app_home') }}">Home</a>
             <a href="{{ path('app_article_index') }}">Articles</a>
+            <a href="{{ path('app_product_index') }}">Produits</a>
+            <a href="{{ path('app_category_index') }}">Catégories</a>
             {% if app.user %}
                 <a href="{{ path('app_user_show', {'id': app.user.id}) }}">Profil</a>
                 <a href="{{ path('app_logout') }}">Déconnexion</a>

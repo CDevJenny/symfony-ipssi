@@ -25,6 +25,7 @@
 
     symfony console doctrine:database:create
     symfony console doctrine:schema:update --force
+#### Ou  
 
 ## Front installation
 
@@ -46,7 +47,7 @@
     symfony console make:entity
     symfony console make:form
     symfony console make:controller
-###
+### Commandes 
     symfony console make:user
     symfony console make:auth
     symfony console make:registration-form
