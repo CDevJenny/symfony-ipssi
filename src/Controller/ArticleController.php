@@ -28,7 +28,10 @@ class ArticleController extends AbstractController
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
+        $user = $this->getUser();
+        
         if ($form->isSubmitted() && $form->isValid()) {
+            $article->setAuthor($user);
             $articleRepository->save($article, true);
 
             return $this->redirectToRoute('app_article_index', [], Response::HTTP_SEE_OTHER);
