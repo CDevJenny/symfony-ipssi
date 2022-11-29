@@ -73,3 +73,11 @@ form input {
 .action_button_container {
     margin-top: 30px;
 }
+.content_container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-bottom: 50px;
+}

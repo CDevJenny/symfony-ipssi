@@ -8,7 +8,9 @@
         {{ form_widget(form) }}
         <button class="btn action_button">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
-    <div>
+    <div class="content_container">
+            <div>
+            <h2>Mes articles</h2>
         {% for article in articles %}
             <section>
                 <h2>{{ article.title }}</h2>
@@ -24,5 +26,20 @@
             </div>
             </section>
         {% endfor %}  
+    </div>
+    <div> 
+    <h2>Mes produits</h2>
+        {% for product in products %}
+        <section>
+            <h2>{{ product.title }}</h2>
+            <p>{{ product.description }}</p>
+            <p>Prix: {{ product.price }} €</p>
+            <p>Catégorie: {{ product.category.name }}</p>
+            <p>Vendeur : {{ product.seller.name }} {{ product.seller.firstname }}</p>
+        </section>
+            <a class="action_button" href="{{ path('app_product_show', {'id': product.id}) }}">show</a>
+            <a class="action_button" href="{{ path('app_product_edit', {'id': product.id}) }}">edit</a>
+        {% endfor %}
+    </div>
     </div>
 {% endblock %}
