@@ -4,37 +4,17 @@
 
 {% block body %}
     <h1>Article index</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Content</th>
-                <th>Auteur</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
         {% for article in articles %}
-            <tr>
-                <td>{{ article.title }}</td>
-                <td>{{ article.content }}</td>
+            <section>
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.content }}</p>
                 {% if article.author %}
-                    <td>{{ article.author.name }}</td>
-                    <td>{{ article.author.firstname }}</td>
+                <p class="article_author">
+                Auteur: {{ article.author.name }} {{ article.author.firstname }}
+                </p>
                 {% endif %}
-                <td>
-{#                     <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a> #}
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="4">no records found</td>
-            </tr>
+            </section>
         {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('app_article_new') }}">Create new</a>
+    <a class="action_button" href="{{ path('app_article_new') }}">Create new</a>
 {% endblock %}

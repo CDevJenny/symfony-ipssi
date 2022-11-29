@@ -6,18 +6,23 @@
     <h1>Hello {{ user.email }}</h1>
     {{ form_start(form) }}
         {{ form_widget(form) }}
-        <button class="btn">{{ button_label|default('Save') }}</button>
+        <button class="btn action_button">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
     <div>
-    {% for article in articles %}        
-        <div>
-            {{ article.title }}
-            {{ article.content }}
-        </div>
-        <div>
-            <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-            <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
-        </div>
-    {% endfor %}    
+        {% for article in articles %}
+            <section>
+                <h2>{{ article.title }}</h2>
+                <p>{{ article.content }}</p>
+                {% if article.author %}
+                <p class="article_author">
+                Auteur: {{ article.author.name }} {{ article.author.firstname }}
+                </p>
+                {% endif %}
+            <div class="action_button_container">
+                <a class="action_button" href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+                <a class="action_button" href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+            </div>
+            </section>
+        {% endfor %}  
     </div>
 {% endblock %}
