@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Category index{% endblock %}
+
+{% block body %}
+    <h1>Liste des catégories</h1>
+        {% for category in categories %}
+        <section>
+            <h2>Nom de la catégorie :</h2>
+            <p>{{ category.name }}</p>
+        </section>
+{#                     <a href="{{ path('app_category_show', {'id': category.id}) }}">show</a>
+                    <a href="{{ path('app_category_edit', {'id': category.id}) }}">edit</a> #}
+        {% endfor %}
+    <a class="action_button" href="{{ path('app_category_new') }}">Create new</a>
+{% endblock %}
