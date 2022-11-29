@@ -20,11 +20,12 @@
                 <td>{{ article.title }}</td>
                 <td>{{ article.content }}</td>
                 {% if article.author %}
-                    <td>{{ article.author.email }}</td>
+                    <td>{{ article.author.name }}</td>
+                    <td>{{ article.author.firstname }}</td>
                 {% endif %}
                 <td>
-                    <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
-                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+{#                     <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a> #}
                 </td>
             </tr>
         {% else %}

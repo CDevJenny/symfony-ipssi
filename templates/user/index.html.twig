@@ -8,4 +8,16 @@
         {{ form_widget(form) }}
         <button class="btn">{{ button_label|default('Save') }}</button>
     {{ form_end(form) }}
+    <div>
+    {% for article in articles %}        
+        <div>
+            {{ article.title }}
+            {{ article.content }}
+        </div>
+        <div>
+            <a href="{{ path('app_article_show', {'id': article.id}) }}">show</a>
+            <a href="{{ path('app_article_edit', {'id': article.id}) }}">edit</a>
+        </div>
+    {% endfor %}    
+    </div>
 {% endblock %}

@@ -39,3 +39,14 @@
 
 ## Dans le dossier SQL 
     Prendre le fichier .sql et importez le dans votre base de données
+# Commandes utiles avec symfony console
+
+## MakerBundle 
+### Commandes make génériques
+    symfony console make:entity
+    symfony console make:form
+    symfony console make:controller
+###
+    symfony console make:user
+    symfony console make:auth
+    symfony console make:registration-form
