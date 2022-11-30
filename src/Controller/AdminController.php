@@ -18,12 +18,17 @@ class AdminController extends AbstractController
     #[Route('', name: 'app_admin')]
     public function index(ArticleRepository $articleRepository, ProductRepository $productRepository): Response
     {
-        $articles = $articleRepository->findAll();
+        $articles = $articleRepository->findByCreatedDate(10, 2);
         $products = $productRepository->findAll();
 
         return $this->render('admin/index.html.twig', [
             "articles" => $articles,
             "products" => $products
         ]);
+    }
+    #[Route('/articles/{limit}/{author}', name: 'app_admin_articles')]
+    public function getArticles(ArticleRepository $articleRepository, $limit, $author) {
+        dd($limit);
+        $filters = $articleRepository->findByCreatedDate($limit, $author);
     }
 }

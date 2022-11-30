@@ -42,16 +42,18 @@ class ArticleRepository extends ServiceEntityRepository
    /**
     * @return Article[] Returns an array of Article objects
     */
-   public function findByExampleField($value): array
+   public function findByCreatedDate(int $limit, int $author = null): array
    {
-       return $this->createQueryBuilder('a')
-           ->andWhere('a.exampleField = :val')
-           ->setParameter('val', $value)
-           ->orderBy('a.id', 'ASC')
-           ->setMaxResults(10)
-           ->getQuery()
-           ->getResult()
-       ;
+        $qb = $this->createQueryBuilder('a');
+
+        if($author) {
+            $qb->andWhere('a.author = :author')
+            ->setParameter('author', $author);
+        }
+        $qb->orderBy('a.createdAt', 'DESC')
+        ->setMaxResults($limit);
+
+        return $qb->getQuery()->getResult();
    }
 
 //    public function findOneBySomeField($value): ?Article
