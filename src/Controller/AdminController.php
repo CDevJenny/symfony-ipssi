@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\ArticleRepository;
+use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,10 +16,14 @@ class AdminController extends AbstractController
     {
     }
     #[Route('', name: 'app_admin')]
-    public function index(): Response
+    public function index(ArticleRepository $articleRepository, ProductRepository $productRepository): Response
     {
+        $articles = $articleRepository->findAll();
+        $products = $productRepository->findAll();
+
         return $this->render('admin/index.html.twig', [
-            'controller_name' => 'AdminController',
+            "articles" => $articles,
+            "products" => $products
         ]);
     }
 }
