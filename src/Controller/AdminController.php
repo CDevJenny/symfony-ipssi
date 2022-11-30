@@ -2,9 +2,11 @@
 
 namespace App\Controller;
 
+use App\Form\FilterType;
 use App\Repository\ArticleRepository;
 use App\Repository\ProductRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,9 +21,10 @@ class AdminController extends AbstractController
     public function index(ArticleRepository $articleRepository, ProductRepository $productRepository): Response
     {
         $articles = $articleRepository->findByCreatedDate(10, 2);
-        $products = $productRepository->findAll();
+        $products = $productRepository->findByCreatedDate(10, 2, 1);
 
-        return $this->render('admin/index.html.twig', [
+
+        return $this->renderForm('admin/index.html.twig', [
             "articles" => $articles,
             "products" => $products
         ]);
