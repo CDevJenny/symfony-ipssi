@@ -22,14 +22,12 @@
     composer install
 
 ### Create DB
-
     symfony console doctrine:database:create
     symfony console doctrine:schema:update --force
-#### Ou  
-
 ## Front installation
-
-    Soon
+    npm install
+    npm run build
+    npm run watch
 
 ## Run symfony server
 
@@ -47,6 +45,7 @@
     symfony console make:entity
     symfony console make:form
     symfony console make:controller
+    symfony console make:crud
 ### Commandes 
     symfony console make:user
     symfony console make:auth
