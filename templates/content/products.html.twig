@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Produits
+{% endblock %}
+
+{% block body %}
+	<h1>Liste des produits</h1>
+	{% for product in products %}
+		<section>
+			<h2>{{ product.title }}</h2>
+			<p>{{ product.description }}</p>
+			<p>Prix:
+				{{ product.price }}
+				€</p>
+			<p>Catégorie:
+				{{ product.category.name }}</p>
+			<p>Vendeur :
+				{{ product.seller.name }}
+				{{ product.seller.firstname }}</p>
+		</section>
+		<a href="{{ path('app_product_show', {'id': product.id}) }}">Voir</a>
+	{% endfor %}
+{% endblock %}

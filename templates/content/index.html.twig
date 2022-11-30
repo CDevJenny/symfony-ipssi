@@ -1,13 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Article index
+{% block title %}Homepage
 {% endblock %}
 
 {% block body %}
-	{% if app.user %}
-		<a class="action_button" href="{{ path('app_article_new') }}">Créer un nouvel article</a>
-	{% endif %}
-
 	{% for article in articles %}
 		<section>
 			<h2>{{ article.title }}</h2>
@@ -20,7 +16,6 @@
 				</p>
 			{% endif %}
 			<div class="action_button_container">
-				<a class="action_button" href="{{ path('app_article_show', {'id': article.id}) }}">Voir</a>
 			</div>
 		</section>
 	{% endfor %}
