@@ -1,16 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello HomeController!{% endblock %}
+{% block title %}Article index
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+	{% if app.user %}
+		<a class="action_button" href="{{ path('app_article_new') }}">Créer un nouvel article</a>
+	{% endif %}
 
-<div class="example-wrapper">
-    <h1>Hello! ✅</h1>
-    <div>
-    </div>
-</div>
+	{% for article in articles %}
+		<section>
+			<h2>{{ article.title }}</h2>
+			<p>{{ article.content }}</p>
+			{% if article.author %}
+				<p class="article_author">
+					Auteur:
+					{{ article.author.name }}
+					{{ article.author.firstname }}
+				</p>
+			{% endif %}
+			<div class="action_button_container">
+				<a class="action_button" href="{{ path('app_article_show', {'id': article.id}) }}">Voir</a>
+			</div>
+		</section>
+	{% endfor %}
 {% endblock %}

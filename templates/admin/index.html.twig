@@ -1,34 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Hello AdminController!
+{% endblock %}
 
 {% block body %}
-
-
-<div class="content_container">
-        <div>
-        {% for article in articles %}
-            <section>
-                <h2>{{ article.title }}</h2>
-                <p>{{ article.content }}</p>
-                {% if article.author %}
-                <p class="article_author">
-                Auteur: {{ article.author.name }} {{ article.author.firstname }}
-                </p>
-                {% endif %}
-            </section>
-        {% endfor %}
-    </div>
-    <div>
-        {% for product in products %}
-        <section>
-            <h2>{{ product.title }}</h2>
-            <p>{{ product.description }}</p>
-            <p>Prix: {{ product.price }} €</p>
-            <p>Catégorie: {{ product.category.name }}</p>
-            <p>Vendeur : {{ product.seller.name }} {{ product.seller.firstname }}</p>
-        </section>
-        {% endfor %}
-    </div>
-</div>
+	<div class="content_container">
+		<div class="article_block">
+		<p>Il y a un total de: <strong>{{ articlesCount }}</strong> articles</p>
+		<h3>Filtrer:</h3>
+			{{ form_start(articleForm) }}
+			{{ form_widget(articleForm) }}
+			<button class="btn action_button">{{ button_label|default('Envoyer') }}</button>
+			{{ form_end(articleForm) }}
+		</div>
+		<div class="product_block">
+		<p>Il y a un total de: <strong>{{ productsCount }}</strong> produits</p>
+		<h3>Filtrer:</h3>
+			{{ form_start(productForm) }}
+			{{ form_widget(productForm) }}
+			<button class="btn action_button">{{ button_label|default('Envoyer') }}</button>
+			{{ form_end(productForm) }}
+		</div>
+	</div>
 {% endblock %}
