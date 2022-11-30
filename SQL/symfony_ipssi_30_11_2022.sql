@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 29, 2022 at 04:55 PM
+-- Generation Time: Nov 30, 2022 at 10:40 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -31,17 +31,21 @@ CREATE TABLE `article` (
   `id` int(11) NOT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `content` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `author_id` int(11) DEFAULT NULL
+  `author_id` int(11) DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `updated_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `article`
 --
 
-INSERT INTO `article` (`id`, `title`, `content`, `author_id`) VALUES
-(1, 'Article numero 455', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. In nisl mi, malesuada eu facilisis in, tempor vitae neque. Quisque consequat in diam non porttitor. Nulla facilisi. Phasellus tempus lectus luctus dui placerat gravida. Praesent nec arcu non erat feugiat gravida. Fusce dictum consectetur consectetur. Phasellus mattis commodo enim sed rutrum. Quisque semper viverra quam in bibendum. Phasellus dignissim, est quis ullamcorper finibus, nulla neque sagittis diam, ac scelerisque ipsum lectus in lectus. Pellentesque luctus placerat dolor sed condimentum. Etiam non vestibulum mi, sed tincidunt ante. Donec feugiat pretium laoreet. Integer urna ipsum, laoreet vitae tellus et, semper accumsan justo.', NULL),
-(2, 'Article numero 2', 'Maecenas lobortis elit eget nulla molestie, quis aliquam lectus interdum. Sed quam sapien, varius eget tempus ut, aliquet vel ante. Etiam imperdiet varius volutpat. Quisque vel lacus egestas, pharetra sapien vel, tincidunt nisl. Mauris at nunc at justo tincidunt commodo. Aliquam quis lacinia sapien, nec cursus mi. Donec aliquet vel mauris sed lobortis. Phasellus mattis vulputate diam sit amet fermentum. Sed ac dui sit amet libero lacinia tristique sit amet sed erat. Phasellus euismod eros vel est sollicitudin, eget placerat metus dictum. Nam venenatis ac diam pretium ultrices. Duis viverra, massa id elementum pulvinar, quam dolor faucibus ligula, at ornare erat ipsum non mauris.', NULL),
-(3, 'Article numero 8798', 'Ceci est un second test d\'auteur', 1);
+INSERT INTO `article` (`id`, `title`, `content`, `author_id`, `created_at`, `updated_at`) VALUES
+(4, 'Article numero 6564', 'Toujours rien', 2, '2022-11-30 09:26:22', '2022-11-30 09:28:04'),
+(5, 'Article numero 21', 'Praesent finibus bibendum justo ac blandit. Donec nec aliquam diam. Sed risus leo, iaculis vel lectus sed, tincidunt ornare lacus. Ut varius ex odio, nec commodo massa iaculis in. Ut sit amet dictum nisl, vel pulvinar massa. Morbi vel porttitor ligula. Etiam in risus eu velit interdum lacinia aliquet id turpis. Sed vestibulum massa augue. Curabitur convallis pharetra ligula vitae finibus.', 2, '2022-11-30 09:45:42', NULL),
+(6, 'Article numero 6564', 'Praesent finibus bibendum justo ac blandit. Donec nec aliquam diam. Sed risus leo, iaculis vel lectus sed, tincidunt ornare lacus. Ut varius ex odio, nec commodo massa iaculis in. Ut sit amet dictum nisl, vel pulvinar massa. Morbi vel porttitor ligula. Etiam in risus eu velit interdum lacinia aliquet id turpis. Sed vestibulum massa augue. Curabitur convallis pharetra ligula vitae finibus.', 2, '2022-11-30 09:45:50', NULL),
+(7, 'Ahkjfezhk', 'Praesent finibus bibendum justo ac blandit. Donec nec aliquam diam. Sed risus leo, iaculis vel lectus sed, tincidunt ornare lacus. Ut varius ex odio, nec commodo massa iaculis in. Ut sit amet dictum nisl, vel pulvinar massa. Morbi vel porttitor ligula. Etiam in risus eu velit interdum lacinia aliquet id turpis. Sed vestibulum massa augue. Curabitur convallis pharetra ligula vitae finibus.', 2, '2022-11-30 09:45:59', NULL),
+(8, 'Article numero 455', 'Praesent finibus bibendum justo ac blandit. Donec nec aliquam diam. Sed risus leo, iaculis vel lectus sed, tincidunt ornare lacus. Ut varius ex odio, nec commodo massa iaculis in. Ut sit amet dictum nisl, vel pulvinar massa. Morbi vel porttitor ligula. Etiam in risus eu velit interdum lacinia aliquet id turpis. Sed vestibulum massa augue. Curabitur convallis pharetra ligula vitae finibus.', 2, '2022-11-30 09:46:10', NULL);
 
 -- --------------------------------------------------------
 
@@ -91,17 +95,20 @@ CREATE TABLE `product` (
   `category_id` int(11) DEFAULT NULL,
   `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` longtext COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `price` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `created_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)',
+  `updated_at` datetime DEFAULT NULL COMMENT '(DC2Type:datetime_immutable)'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `seller_id`, `category_id`, `title`, `description`, `price`) VALUES
-(2, 1, 2, 'Nouveau Produit', 'Produit incroyable', '65'),
-(3, 1, 3, 'Produit test', 'Description Produit', '65646'),
-(4, 1, 2, 'Produit test 4', 'Produit incroyable', '546');
+INSERT INTO `product` (`id`, `seller_id`, `category_id`, `title`, `description`, `price`, `image`, `created_at`, `updated_at`) VALUES
+(5, 2, 1, 'Produit 1', 'Test', '65', NULL, '2022-11-30 09:46:29', NULL),
+(6, 2, 2, 'Produit 5', 'UYgrjh', '45', NULL, '2022-11-30 09:46:43', NULL),
+(7, 2, 1, 'LJHlhf', 'Test', '88', NULL, '2022-11-30 09:46:53', NULL);
 
 -- --------------------------------------------------------
 
@@ -124,7 +131,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `email`, `roles`, `password`, `name`, `firstname`) VALUES
 (1, 'test@test.com', '[\"ROLE_USER\"]', '$2y$13$rSMcBmakx4Dqm9JbY6RVSu.NoSWQV9DdUcEkMJqeR5PvmXF3HwuU6', 'Test', 'Testeur'),
-(2, 'user@test.com', '[]', '$2y$13$aTOMWgtKJdtlnb74Be724eGoI9Ri9cqNNEHM04Xdev.xOAM4iJYvm', NULL, NULL);
+(2, 'user@test.com', '[\"ROLE_USER\", \"ROLE_ADMIN\"]', '$2y$13$oYt5uSY0wyBBzvNKyIgPs.KeGMMNJYROmwpIeiyrqL0EMaeo6B3Q.', 'Test', 'Testing');
 
 --
 -- Indexes for dumped tables
@@ -175,7 +182,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `category`
@@ -193,7 +200,7 @@ ALTER TABLE `messenger_messages`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
