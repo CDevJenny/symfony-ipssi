@@ -29,6 +29,17 @@ class ContentController extends AbstractController
     {
         $products = $productRepository->findAll();
 
+        $user = $this->getUser();
+        $cart = $user->getCart();
+        $p = $cart->getCartProducts()->toArray();
+        
+        $productss = [];
+        foreach ($p as $key => $product) {
+            $products[$key] = $product->getProducts();
+        }
+        //dd($productss);
+
+
         return $this->render('content/products.html.twig', [
             'products' => $products,
         ]);

@@ -2,19 +2,26 @@
 
 namespace App\Controller;
 
+use App\Entity\Cart;
+use App\Entity\User;
 use DateTimeImmutable;
 use App\Entity\Article;
+use App\Entity\CartProduct;
 use App\Entity\Product;
 use App\Entity\Category;
 use App\Form\ArticleType;
 use App\Form\ProductType;
 use App\Form\CategoryType;
+use App\Repository\UserRepository;
 use App\Repository\ArticleRepository;
+use App\Repository\CartProductRepository;
+use App\Repository\CartRepository;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ActionController extends AbstractController
@@ -65,6 +72,29 @@ class ActionController extends AbstractController
     public function deleteProduct(Product $product, ProductRepository $productRepository)
     {
         $productRepository->remove($product, true);
+
+        return $this->redirectToRoute('app_products');
+    }
+
+    #[Route('/product/add/{id}/{qt}', name: 'app_product_add')]
+    public function addToCart(Product $product, $qt, CartRepository $cartRepository, CartProductRepository $cartProductRepository)
+    {
+        $user = $this->getUser();
+
+        if (!$user->getCart()) {
+            $cart = new Cart();
+
+            $cart->setUser($user);
+            $cartRepository->save($cart, true);
+        } 
+        $cart = $user->getCart();
+
+        $cartProduct = new CartProduct();
+        $cartProduct->setProducts($product);
+        $cartProduct->setCarts($cart);
+        $cartProduct->setProductQuantity($qt);
+
+        $cartProductRepository->save($cartProduct, true);
 
         return $this->redirectToRoute('app_products');
     }

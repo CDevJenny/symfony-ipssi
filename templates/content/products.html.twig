@@ -19,5 +19,6 @@
 				{{ product.seller.firstname }}</p>
 		</section>
 		<a href="{{ path('app_product_show', {'id': product.id}) }}">Voir</a>
+{# 		<a href="{{ path('app_product_add', {'id': product.id}) }}">Ajouter au panier</a> #}
 	{% endfor %}
 {% endblock %}
